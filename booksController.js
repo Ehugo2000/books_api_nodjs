@@ -7,16 +7,6 @@ const booksController = {
     response.status(200).json({ books: rows })
   },
 
-  // index(request, response, next) {
-  //   pool.query('SELECT * FROM books', (error, results) => {
-  //     if (error) {
-  //       throw error
-  //     } else {
-  //       response.status(200).json({ books: results.rows })
-  //     }
-  //   })
-
-  // create action in RAILS
   async create(request, response, next) {
     const { author, title } = request.body
     await pool.query('INSERT INTO books (author, title) VALUES ($1, $2)', [
@@ -28,9 +18,7 @@ const booksController = {
 
   async show(request, response, next) {
     const { id } = request.params
-    const {
-      rows,
-    } = await pool.query('SELECT * FROM books WHERE id = $1 LIMIT 1', [id])
+    const { rows } = await pool.query('SELECT * FROM books WHERE id = $1 LIMIT 1', [id])
     response.status(200).json({ book: rows[0] })
   },
 
