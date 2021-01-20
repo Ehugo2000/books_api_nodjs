@@ -22,7 +22,7 @@ app.route('/books/:id')
 .put(booksController.update)
 
 // Start server
-app.listen(3001, () => {
+app.listen(3000, () => {
   console.log('Server is up and running...')
 })
 
